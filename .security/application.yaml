@@ -1,0 +1,29 @@
+# .security/application.yaml: the application's declared context (Attestra repository contract).
+schema_version: "1"
+application:
+  name: Attestra E2E App
+  description: Throwaway sample application for the Attestra end-to-end test.
+  owners:
+    business_owner: info@cipherfortsecurity.com
+    technical_owner: "@ciphermichael"
+    team: "@cipherfort/attestra-e2e"   # placeholder: the format is checked, the team itself is not (the org has no teams)
+    org_unit: claims-team
+    security_champion: "@ciphermichael"
+  security_contact:
+    email: info@cipherfortsecurity.com
+  lifecycle: development
+  classification:
+    data_classification: internal
+    personal_data: none
+    exposure: internal
+    user_population: team
+    business_criticality: minimal
+    privileged_integration: none
+    regulatory: []
+  profile:
+    languages: [ python ]
+    frameworks: []
+    runtime: other
+    kubernetes: false
+    has_api: false
+    has_web_frontend: false
