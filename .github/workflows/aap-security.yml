@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Attestra: security pipeline caller. The only security workflow file an application repository
+# FortProof: security pipeline caller. The only security workflow file an application repository
 # needs. Render it with your organization's values: `aap pipelines caller --repository <org>/security-workflows
 # --sha <approved SHA> --release <tag>`. Dependabot keeps the SHA current. No secrets: the platform pulls the
 # evidence artifacts through its read-only GitHub App.
@@ -27,52 +27,52 @@ jobs:
       attestations: write
       security-events: write   # CodeQL results in the Security tab (Code Security on private repos)
       actions: read
-    uses: cipherfort/attestra-security-workflows/.github/workflows/sast.yml@5defd65ba2b5069d6d89ee6b630694fd76c83b21 # v1.0.0
+    uses: cipherfort/fortproof-security-workflows/.github/workflows/sast.yml@fdfe5ba2e5c28b9bed2de0801e85e23f0f80365f # v2.0.0
   sca:
     permissions:
       contents: read
       id-token: write
       attestations: write
-    uses: cipherfort/attestra-security-workflows/.github/workflows/sca.yml@5defd65ba2b5069d6d89ee6b630694fd76c83b21 # v1.0.0
+    uses: cipherfort/fortproof-security-workflows/.github/workflows/sca.yml@fdfe5ba2e5c28b9bed2de0801e85e23f0f80365f # v2.0.0
   secrets:
     permissions:
       contents: read
       id-token: write
       attestations: write
-    uses: cipherfort/attestra-security-workflows/.github/workflows/secrets.yml@5defd65ba2b5069d6d89ee6b630694fd76c83b21 # v1.0.0
+    uses: cipherfort/fortproof-security-workflows/.github/workflows/secrets.yml@fdfe5ba2e5c28b9bed2de0801e85e23f0f80365f # v2.0.0
   iac:
     permissions:
       contents: read
       id-token: write
       attestations: write
-    uses: cipherfort/attestra-security-workflows/.github/workflows/iac.yml@5defd65ba2b5069d6d89ee6b630694fd76c83b21 # v1.0.0
+    uses: cipherfort/fortproof-security-workflows/.github/workflows/iac.yml@fdfe5ba2e5c28b9bed2de0801e85e23f0f80365f # v2.0.0
   sbom:
     permissions:
       contents: read
       id-token: write
       attestations: write
-    uses: cipherfort/attestra-security-workflows/.github/workflows/sbom.yml@5defd65ba2b5069d6d89ee6b630694fd76c83b21 # v1.0.0
+    uses: cipherfort/fortproof-security-workflows/.github/workflows/sbom.yml@fdfe5ba2e5c28b9bed2de0801e85e23f0f80365f # v2.0.0
   workflow-lint:
     permissions:
       contents: read
       id-token: write
       attestations: write
-    uses: cipherfort/attestra-security-workflows/.github/workflows/workflow-lint.yml@5defd65ba2b5069d6d89ee6b630694fd76c83b21 # v1.0.0
+    uses: cipherfort/fortproof-security-workflows/.github/workflows/workflow-lint.yml@fdfe5ba2e5c28b9bed2de0801e85e23f0f80365f # v2.0.0
   # Container images: call container.yml from your build workflow with the pushed image digest, e.g.
   #   container:
   #     needs: build
   #     permissions: { contents: read, id-token: write, attestations: write, packages: read }
-  #     uses: cipherfort/attestra-security-workflows/.github/workflows/container.yml@<sha>
+  #     uses: cipherfort/fortproof-security-workflows/.github/workflows/container.yml@<sha>
   #     with:
   #       image: ghcr.io/example-org/claims-api@${{ needs.build.outputs.digest }}
   # Security tests: upload your JUnit XML in a test job, then package it as evidence, e.g.
   #   security-tests:
   #     needs: test            # your job: actions/upload-artifact with name junit-results
   #     permissions: { contents: read, id-token: write, attestations: write, actions: read }
-  #     uses: cipherfort/attestra-security-workflows/.github/workflows/test-evidence.yml@<sha>
+  #     uses: cipherfort/fortproof-security-workflows/.github/workflows/test-evidence.yml@<sha>
   #     with: { results_artifact: junit-results }
   # Deployments (in your CD workflow, before the deploy step):
   #   deploy-evidence:
   #     permissions: { contents: read, id-token: write, attestations: write, packages: read }
-  #     uses: cipherfort/attestra-security-workflows/.github/workflows/deploy-evidence.yml@<sha>
+  #     uses: cipherfort/fortproof-security-workflows/.github/workflows/deploy-evidence.yml@<sha>
   #     with: { image: "ghcr.io/example-org/claims-api@sha256:...", environment: production, owner: example-org }

@@ -1,12 +1,12 @@
-# .security/application.yaml: the application's declared context (Attestra repository contract).
+# .security/application.yaml: the application's declared context (FortProof repository contract).
 schema_version: "1"
 application:
-  name: Attestra E2E App
-  description: Throwaway sample application for the Attestra end-to-end test.
+  name: FortProof E2E App
+  description: Throwaway sample application for the FortProof end-to-end test.
   owners:
     business_owner: info@cipherfortsecurity.com
     technical_owner: "@ciphermichael"
-    team: "@cipherfort/attestra-e2e"   # placeholder: the format is checked, the team itself is not (the org has no teams)
+    team: "@cipherfort/fortproof-e2e"   # placeholder: the format is checked, the team itself is not (the org has no teams)
     org_unit: claims-team
     security_champion: "@ciphermichael"
   security_contact:
